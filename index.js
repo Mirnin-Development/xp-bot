@@ -1,7 +1,7 @@
 const aoijs = require('aoi.js');
 
  const bot = new aoijs.Bot({
-   token: "ODUwNDQ5MTI5NDgyMjIzNzA3.YLp4eQ.od-IwiaCN2plosT2UIIrA8SgtBE",
+   token: "TOKEN",
    prefix: 'x!',
 fetchInvites: true,
 intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"]
