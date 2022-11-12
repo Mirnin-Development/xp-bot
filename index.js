@@ -6,7 +6,13 @@ const bot = new Aoijs.bot({
     token: "DISCORD BOT TOKEN",
     prefix: "x!",
     fetchInvites: true,
-    intents: ["GUILDS", "GUILD_MESSAGES"]
+    intents: "all",
+ database: {
+    db: require("dbdjs.db"),
+    type: "dbdjs.db",
+    path: "./database/",
+    tables: ["main"]
+  }
 })
  
 bot.status({
@@ -21,14 +27,35 @@ bot.status({
   time: 12
 })
 
+//new slash commands (v0.0.2)
+bot.interactionCommand({
+name: "ping", 
+prototype : 'slash',
+code: `$interactionReply[;{newEmbed:{title:Pong!}{description:🏓 Pong! $pingms}{field:Shard ID:$shardID:yes}{color:RED}}
+$botTyping]`
+})
+
+bot.interactionCommand({
+name: "help", 
+prototype : 'slash',
+code: `$interactionReply[;{newEmbed:{title:Help Menu}{description:The bots help menu}{field:**Owner**:ownerhelp}{field:**Fun**:rip}{field:**Setup**:setup, setwelcomechannel, setwelcomemsg, ticketpanel, captcharole, register}{field:**Admin**:ban, purge, slowmode}{field:**General**:avatar, invite}{field:**Core**:ping, help, stats, setprefix, resetprefix}{color:BLUE}}
+$botTyping]`
+})
+
+bot.interactionCommand({
+name: "invite", 
+prototype : 'slash',
+code: `$interactionReply[;{newEmbed:{title:Bot Invite}{description:Recommended: [Click here]($getBotInvite)}{color:BLUE}}
+$botTyping
+]`
+})
 
 
-bot.onMessage() //enables bot to see messages (required for executing Commands)
-bot.onGuildJoin()
-bot.onGuildLeave() 
-
-const loader = new aoijs.LoadCommands(bot)
- loader.load(bot.cmd,"./commands/")
+bot.onMessage(); //enables bot to see messages (required for executing Commands)
+bot.onGuildJoin(); //enables bot to do tasks when a user joins a guild (required for welcome/invite system)
+bot.onGuildLeave(); //enables bot to do tasks when a user leaves a guild (required for welcome/invite system)
+bot.onInteractionCreate(); //enables bot to do slash commands ex: /ping
+bot.onJoin(); //enables welcome system
 
 bot.variables({
 prefix: "x!",
@@ -48,6 +75,7 @@ bot.command({
   $color[1;RED]`
  });
 
+//Bot invire command if your not self hosting (v0.0.l)
 bot.command({
 name: "invite", 
 code: `
@@ -61,6 +89,13 @@ bot.joinCommand({
  $color[1;RED]
  $footer[1;Now $serverName Has $membersCount Members!;$serverIcon]
  $addTimestamp[1]
- 
- $thumbnail[1;$userAvatar[$authorID]]`}) 
-bot.onJoin()
+ $thumbnail[1;$userAvatar[$authorID]]`
+}) 
+
+
+//External Variables (v0.0.2)
+bot.variables(require(`./variables/variables.js`))
+
+//External commands
+const loader = new aoijs.LoadCommands(bot)
+ loader.load(bot.cmd,"./commands/")
