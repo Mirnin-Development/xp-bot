@@ -3,4 +3,15 @@
 
 ### This bot features economy, utilities, moderation, and more coming soon!!!
 
-Please ask DaBoltGod#0001 (on discord to use this bot for redistribution purposes)
+## v0.1 Features 
+
+- Invite System 
+- Welcoming System 
+- Slashes 
+- Moderation 
+
+## v0.2 Features 
+- New Variable System 
+- New Slash Command System 
+- Developer Information 
+- New Branding 
