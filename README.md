@@ -4,8 +4,7 @@
 
 ### This bot features economy, utilities, moderation, and more coming soon!!!
 
-## v0.1 Features 
-
+## v0.1 Features (03/08/2022)
 - Invite System 
 - Welcoming System 
 - Slashes 
