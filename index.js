@@ -57,16 +57,6 @@ bot.onGuildLeave(); //enables bot to do tasks when a user leaves a guild (requir
 bot.onInteractionCreate(); //enables bot to do slash commands ex: /ping
 bot.onJoin(); //enables welcome system
 
-bot.variables({
-prefix: "x!",
-    XP: "50",
-    Bank: "500",
-    Wallet: "500",
-    WelcomeChannel: "",
-WelcomeMessage: "Welcome {user.ping} To {server}!",
- WelcomeTitle:"Welcome {user.ping}"
-})
-
 bot.command({
   name: "ping", //command name
   code: `$title[1;🏓 Pong!]
