@@ -15,3 +15,5 @@
 - New Slash Command System 
 - Developer Information 
 - New Branding 
+- New Intents 
+- New Database System for more advanced commands! 
