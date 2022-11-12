@@ -1,12 +1,14 @@
-const aoijs = require('aoi.js');
+ const aoijs = require("aoi.js")
 
- const bot = new aoijs.Bot({
-   token: "TOKEN",
-   prefix: 'x!',
-fetchInvites: true,
-intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"]
+const bot = new Aoijs.bot({
+    sharding: true,
+    shardAmount: 2,
+    token: "DISCORD BOT TOKEN",
+    prefix: "x!",
+    fetchInvites: true,
+    intents: ["GUILDS", "GUILD_MESSAGES"]
 })
-
+ 
 bot.status({
   text: "x!help - $serverCount servers",
   type: "PLAYING",
@@ -40,26 +42,22 @@ WelcomeMessage: "Welcome {user.ping} To {server}!",
 
 bot.command({
   name: "ping", //command name
-  code: `My Ping Is \`$ping ms\` ` //code to be executed when this command is called 
+  code: `$title[1;🏓 Pong!]
+  $description[1;My Ping is **$ping ms**]
+  $footer[1;🔹 Shard # - $shardID]
+  $color[1;RED]`
  });
 
 bot.command({
 name: "invite", 
 code: `
-$description[[Package](https://dsc.gg/xp-bot 'click')]` 
+$description[1;[Invite](https://mirnindev.cf/xpbot 'click')]` 
 })
 
 bot.joinCommand({ 
  channel:"$getServerVar[WelcomeChannel]", 
  code:`$title[1;$replaceText[$replaceText[$replaceText[$replaceText[$getServerVar[WelcomeTitle];{user};$username];{user.ping};<@$authorID>];{server};$serverName];{user.tag};$userTag[$authorID]]]
- $description[1;
- 
- 
- $replaceText[$replaceText[$replaceText[$replaceText[$getServerVar[WelcomeMessage];{user};$username];{user.ping};<@$authorID>];{server};$serverName];{user.tag};$userTag[$authorID]]
- 
- 
- 
- ]
+ $description[1;$replaceText[$replaceText[$replaceText[$replaceText[$getServerVar[WelcomeMessage];{user};$username];{user.ping};<@$authorID>];{server};$serverName];{user.tag};$userTag[$authorID]]]
  $color[1;RED]
  $footer[1;Now $serverName Has $membersCount Members!;$serverIcon]
  $addTimestamp[1]
